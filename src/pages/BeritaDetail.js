@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import SidebarKanan from '../components/SidebarKanan';
@@ -6,6 +6,7 @@ import SidebarKanan from '../components/SidebarKanan';
 const BeritaDetail = () => {
   const { id } = useParams();
   const [showZoom, setShowZoom] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const newsData = [
     {
@@ -22,20 +23,30 @@ const BeritaDetail = () => {
     },
     {
       id: 2,
-      title: 'Senyuman Kematian LILI',
+      title: 'Pelantikan Bupati Way Kanan',
       desc: 'Senyuman yang sangat responsif membuat otak lunglay',
       date: '31/05/2024',
-      image: '/hoak1.jpg',
+      image: '/berita2.jpeg',
       content: [
         'Senyum LILI saat memimpin apel pagi telah menarik perhatian para pegawai. Banyak yang menilai senyum tersebut membawa aura tersendiri.',
         'Beberapa menyebutnya “senyum kematian” karena bisa membuat siapa pun diam membisu, terpaku oleh ketenangannya.',
         'Namun bagi sebagian lainnya, itu adalah bentuk ketegasan dan kharisma seorang pemimpin. Senyum itu kini menjadi pembicaraan hangat di media sosial ASN Lampung.'
       ]
-    },
-    // Tambahkan berita lainnya di sini jika perlu
+    }
   ];
 
   const berita = newsData.find((item) => item.id === parseInt(id));
+
+  useEffect(() => {
+    setIsVisible(true);
+    const titleElement = document.getElementById('berita-judul');
+    if (titleElement) {
+      titleElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, []);
 
   if (!berita) {
     return <div className="text-center mt-10 text-lg">Berita tidak ditemukan</div>;
@@ -43,45 +54,41 @@ const BeritaDetail = () => {
 
   return (
     <div className="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 relative">
-      {/* Sidebar Kiri */}
       <Sidebar />
 
-      {/* Konten Utama + Sidebar Kanan */}
       <div className="flex flex-col md:flex-row px-6 md:px-20 gap-8 py-12">
-        {/* Konten Utama */}
-        <div className="w-full md:w-3/4 space-y-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide text-center">
+        <div className={`w-full md:w-3/4 space-y-6 ${isVisible ? 'animate-slide-in-top' : 'opacity-0'}`}>
+          <h1
+            id="berita-judul"
+            className="text-3xl md:text-4xl font-extrabold tracking-wide text-center"
+          >
             {berita.title}
           </h1>
 
-          {/* Gambar Berita */}
           <div className="flex justify-center">
             <img
               src={berita.image}
               alt={berita.title}
               onClick={() => setShowZoom(true)}
-              className="w-[400px] max-w-full h-auto object-cover rounded-xl shadow cursor-zoom-in border border-gray-300 dark:border-gray-700"
+              className="w-[700px] max-w-full h-auto object-cover rounded-xl shadow cursor-zoom-in border border-gray-300 dark:border-gray-700"
             />
           </div>
 
-          {/* Isi Berita (banyak paragraf) */}
           <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
             {berita.content.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
           </div>
 
-          {/* Tanggal */}
           <p className="text-sm text-gray-400 dark:text-gray-500">Tanggal: {berita.date}</p>
         </div>
 
-        {/* Sidebar Kanan */}
         <div className="w-full md:w-1/4 sticky top-28 h-fit">
           <SidebarKanan />
         </div>
       </div>
 
-      {/* Modal Zoom Gambar */}
+      {/* Zoom overlay */}
       {showZoom && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"

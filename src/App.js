@@ -15,6 +15,11 @@ import Sejarah from './pages/Sejarah'
 import TataKelola from './pages/TataKelola'
 import HargaPasarList from './pages/HargaPasarList';
 import PasarDetail from './pages/PasarDetail';
+import StrukturOrganisasi from './pages/StrukturOrganisasi';
+import Berita from './pages/Berita';
+
+
+
 
 
 
@@ -36,9 +41,11 @@ function App() {
           <Route path="/profil-VisiMisi" element={<VisiMisi />} />
           <Route path="/profil-RuangLingkup" element={<RuangLingkup />} />
           <Route path="/profil-Sejarah" element={<Sejarah />} />
+          <Route path="/profil-StrukturOrgano" element={<StrukturOrganisasi/>} />
+          <Route path="/profil-StrukturOrganisasi" element={<StrukturOrganisasi />} />
           <Route path="/galeri-Image" element={<Image/>} />
           <Route path="/galeri-Video" element={<Video />} />
-
+          <Route path="/berita" element={<Berita />} /> 
 
 
 

@@ -13,7 +13,7 @@ function Navbar() {
 
   const menus = [
     { name: 'Beranda', to: '/' },
-    { name: 'Berita', submenu: [] },
+    { name: 'Berita', submenu: [{ label: 'Semua Berita', to: '/berita' }] },  // Menambahkan submenu ke "Berita"
     { name: 'Informasi', submenu: [] },
     { name: 'Kontak', submenu: [] },
     { name: 'IPKD', submenu: [] },
@@ -25,15 +25,15 @@ function Navbar() {
         { label: 'LHKPN', to: '/profil-LHKPN' },
         { label: 'Visi Misi', to: '/profil-VisiMisi' },
         { label: 'Ruang Lingkup Pemerintah Provinsi Lampung', to: '/profil-RuangLingkup' },
-        {label: 'Sejarah', to: 'profil-Sejarah'},
+        { label: 'Sejarah', to: '/profil-Sejarah' },
       ],
     },
     { name: 'Galeri', 
       submenu: [
         { label: 'Image', to: '/galeri-Image' },
         { label: 'Video', to: '/galeri-Video' },
-      ],
-     },
+      ]
+    },
   ];
 
   return (
@@ -61,14 +61,12 @@ function Navbar() {
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-6 items-center">
           {menus.map(({ name, to, submenu }) => (
-              
-              <div
-                key={name}
-                className="relative group"
-                onMouseEnter={() => setDropdownOpen(name)}
-                onMouseLeave={() => setDropdownOpen(null)}
-              >
-
+            <div
+              key={name}
+              className="relative group"
+              onMouseEnter={() => setDropdownOpen(name)}
+              onMouseLeave={() => setDropdownOpen(null)}
+            >
               {to ? (
                 <Link
                   to={to}
@@ -85,15 +83,14 @@ function Navbar() {
               )}
 
               {/* Dropdown Submenu */}
-                {submenu && submenu.length > 0 && (
-                  <div
-                    className={`absolute right-0 md:left-auto w-56 bg-[#263238] rounded-lg shadow-lg mt-2 p-4 z-10 transition-all duration-300 ease-in-out ${
-                      dropdownOpen === name
-                        ? 'opacity-100 visible translate-y-0'
-                        : 'opacity-0 invisible -translate-y-2'
-                    }`}
-                  >
-
+              {submenu && submenu.length > 0 && (
+                <div
+                  className={`absolute right-0 md:left-auto w-56 bg-[#263238] rounded-lg shadow-lg mt-2 p-4 z-10 transition-all duration-300 ease-in-out ${
+                    dropdownOpen === name
+                      ? 'opacity-100 visible translate-y-0'
+                      : 'opacity-0 invisible -translate-y-2'
+                  }`}
+                >
                   {submenu.map((item) => (
                     <Link
                       key={item.label}
