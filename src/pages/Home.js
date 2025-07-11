@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import HeroSection from '../components/HeroSection';
-import HotNewsSlider from '../components/HotNewsSlider';
 import Sidebar from '../components/Sidebar';
 import SidebarKanan from '../components/SidebarKanan';
 import KabupatenKotaSection from '../components/KabupatenKotaSection';
 import PerangkatDaerahSlider from '../components/PerangkatDaerahSlider';
+import InfoPerangkatDaerah from '../components/InfoPerangkatDaerah'; 
+import { LanguageContext } from '../contexts/LanguageContext';
+import Translations from '../data/Translation';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -13,39 +15,41 @@ import 'swiper/css/pagination';
 function Home() {
   const [setSelectedNews] = useState(null);
   const handleNewsClick = (news) => setSelectedNews(news);
+  const { language } = useContext(LanguageContext);
+  const t = Translations[language];
 
   return (
     <div className="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-100 relative">
       <Sidebar />
-
       <HeroSection />
 
-      {/* Motif Atas */}
+      {/* Motif Atas Global */}
       <div
         className="w-full h-[46px] bg-repeat-x bg-top"
-        style={{ backgroundImage: "url('/motif.png')", backgroundSize: 'contain' }}
+        style={{ backgroundImage: "url('motif.png')", backgroundSize: 'contain' }}
       ></div>
 
-      {/* PIMPINAN DAERAH */}
+      {/* Pimpinan Daerah */}
       <section
         className="relative bg-cover bg-center py-20 px-6 md:px-20 text-center"
-        style={{ backgroundImage: "url('/tapis.png')" }}
+        style={{ backgroundImage: "url('/batik3.png')" }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
         <div className="relative z-10 text-white">
-          <h2 className="text-4xl font-extrabold tracking-wide drop-shadow-lg mb-12 animate-fade-in-up">
-            PIMPINAN DAERAH
+          <h2 className="text-5xl md:text-6xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-white to-yellow-500 drop-shadow-[0_3px_15px_rgba(255,255,255,0.6)] mb-6 animate-fade-in-up uppercase">
+            {t.pimpinanDaerah}
           </h2>
+          <div className="w-24 h-1 mx-auto bg-yellow-400 rounded-full animate-pulse shadow-md mb-8" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 justify-center items-center">
             {[{
               name: 'RAHMAT MIRZANI DJAUSAL, S.T, M.M',
-              title: 'Gubernur Provinsi Lampung',
+              title: t.gubernur,
               image: '/gubernur.png',
               delay: 'delay-100'
             }, {
               name: 'dr. JIHAN NURLELA, M.M.',
-              title: 'Wakil Gubernur Provinsi Lampung',
+              title: t.wakilGubernur,
               image: '/wakil.png',
               delay: 'delay-200'
             }].map((person, i) => (
@@ -72,41 +76,41 @@ function Home() {
         </div>
       </section>
 
-      {/* Motif Bawah setelah Pimpinan Daerah */}
+      {/* Motif Bawah Global */}
       <div
         className="w-full h-[46px] bg-repeat-x bg-top"
-        style={{ backgroundImage: "url('/motif.png')", backgroundSize: 'contain' }}
+        style={{ backgroundImage: "url('motif.png')", backgroundSize: 'contain' }}
       ></div>
 
-      {/* KONTEN UTAMA */}
+      {/* Konten Bawah */}
       <div className="flex flex-col md:flex-row px-6 md:px-20 gap-8 py-12">
-        <div className="w-full md:w-3/4 space-y-12">
-          <section id="hot-news">
-            <HotNewsSlider onClick={handleNewsClick} />
-          </section>
+        <div className="relative w-full md:w-3/4 space-y-12 bg-white dark:bg-gray-900 rounded-xl shadow-xl overflow-hidden pt-0 pb-16 px-4">
+          {/* Ornamen atas & bawah */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[30px] bg-no-repeat bg-top pointer-events-none z-0"
+            style={{
+              backgroundImage: "url('tapisatas.jpg')",
+              backgroundSize: '100% 30px',
+              backgroundPosition: 'top',
+            }}
+          ></div>
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[30px] bg-no-repeat bg-bottom pointer-events-none z-0"
+            style={{
+              backgroundImage: "url('tapisbawah.jpg')",
+              backgroundSize: '100% 30px',
+              backgroundPosition: 'bottom',
+            }}
+          ></div>
 
-          <section className="bg-white dark:bg-gray-900 py-12 px-4 md:px-6 rounded-lg shadow">
-            <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">INFO PERANGKAT DAERAH</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-              {[{
-                nama: 'Dinas Pendidikan', deskripsi: 'Mengelola urusan pendidikan dan kebudayaan.'
-              }, {
-                nama: 'Dinas Kesehatan', deskripsi: 'Melayani kesehatan masyarakat provinsi.'
-              }, {
-                nama: 'Dinas Perhubungan', deskripsi: 'Mengatur transportasi dan lalu lintas.'
-              }, {
-                nama: 'Dinas Kominfo', deskripsi: 'Menyediakan layanan informasi & komunikasi.'
-              }].map((item, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow hover:shadow-lg transition duration-300 flex flex-col items-center text-center">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">{item.nama}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">{item.deskripsi}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          <div className="relative z-10 space-y-12">
 
-          <PerangkatDaerahSlider />
-          <KabupatenKotaSection />
+            {/* Info Perangkat Daerah - Mengganti dengan Komponen InfoPerangkatDaerah */}
+            <InfoPerangkatDaerah />
+
+            <PerangkatDaerahSlider />
+            <KabupatenKotaSection />
+          </div>
         </div>
 
         <div className="w-full md:w-1/4 sticky top-28 h-fit">

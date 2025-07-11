@@ -3,11 +3,25 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: 'media', // atau 'class' jika ingin toggle manual
+  darkMode: 'media', // Menggunakan tema gelap berdasarkan pengaturan sistem
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        primary: {
+          light: '#FFB800', // Kuning terang
+          dark: '#F9A825',  // Kuning gelap untuk dark mode
+        },
+        secondary: {
+          light: '#374151', // Abu-abu untuk terang
+          dark: '#E5E7EB',  // Abu-abu untuk gelap
+        },
+        background: {
+          light: '#FFFFFF', // Latar belakang terang
+          dark: '#1e293b',   // Latar belakang gelap
+        },
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out both',
@@ -22,6 +36,13 @@ module.exports = {
           '0%': { opacity: 0, transform: 'scale(0.95)' },
           '100%': { opacity: 1, transform: 'scale(1)' },
         },
+      },
+      screens: {
+        'sm': '640px',
+        'md': '800px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
       },
     },
   },

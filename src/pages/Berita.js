@@ -1,6 +1,7 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
-import SidebarKanan from '../components/SidebarKanan';
+import { motion } from 'framer-motion';
+import PageWithSidebar from '../components/PageWithSidebar';
+
 
 const newsData = [
   {
@@ -9,15 +10,15 @@ const newsData = [
     date: '31/05/2024',
     description: 'Diskusi tentang Indeks Demokrasi Indonesia (IDI) dan kolaborasi sektor...',
     image: '/berita1.jpg',
-    link: 'https://www.lampungprov.go.id/berita1',
+    link: 'https://ppid.lampungprov.go.id/detail-post/Lampung-Targetkan-Kenaikan-Nilai-IDI-Pj-Sekda-Dorong-Kolaborasi-Seluruh-Elemen',
   },
   {
     id: 2,
     title: 'Pelantikan Bupati Way Kanan',
     date: '31/05/2024',
     description: 'Pelantikan Bupati Way Kanan dan senyum kematian yang menarik perhatian...',
-    image: '/hoak1.jpg',
-    link: 'https://www.lampungprov.go.id/berita2',
+    image: '/berita2.jpeg',
+    link: 'https://www.tribunnews.com/regional/2025/06/11/sosok-ayu-asalasiyah-kini-resmi-jabat-bupati-way-kanan-lampung-pengganti-ali-rahman#google_vignette',
   },
   {
     id: 3,
@@ -25,23 +26,24 @@ const newsData = [
     date: '30/05/2024',
     description: 'Peresmian jalan tol baru di Lampung untuk mempercepat konektivitas...',
     image: '/berita3.jpg',
-    link: 'https://www.lampungprov.go.id/berita3',
+    link: 'https://www.ayobandung.com/umum/7914915798/masyarakat-lampung-bersuka-cita-jalan-tol-baru-rp440-triliun-segera-dibangun-di-era-rahmat-mirzani-djausal-ini-namanya',
   },
+
   {
     id: 4,
     title: 'Pemprov Lampung Gelar Festival Budaya',
     date: '29/05/2024',
     description: 'Festival budaya Lampung disambut meriah oleh masyarakat...',
-    image: '/berita4.jpg',
-    link: 'https://www.lampungprov.go.id/berita4',
+    image: '/berita7.jpg',
+    link: 'https://gerbangpatriot.com/2025/06/20/pemprov-lampung-gelar-pesenggiri-culture-event-2025-wujud-nyata-pelestarian-budaya-lokal/',
   },
   {
     id: 5,
     title: 'Lampung Raih Penghargaan Nasional Inovasi Daerah',
     date: '28/05/2024',
     description: 'Penghargaan diberikan atas inovasi pelayanan publik...',
-    image: '/berita5.jpg',
-    link: 'https://www.lampungprov.go.id/berita5',
+    image: '/berita8.jpg',
+    link: 'https://lampung.nu.or.id/pemerintahan/raih-penghargaan-inovasi-jadi-landasan-perbaikan-pelayanan-publik-bagi-pemerintah-provinsi-lampung-1plrF',
   },
   {
     id: 6,
@@ -49,7 +51,7 @@ const newsData = [
     date: '27/05/2024',
     description: 'Program pengembangan UMKM untuk mendorong ekonomi daerah...',
     image: '/berita6.jpg',
-    link: 'https://www.lampungprov.go.id/berita6',
+    link: 'https://disperindag.lampungprov.go.id/detail-post/dialog-lampung-menyapa-sinergi-pemprov-lampung-dukung-umkm-berdaya-saing-global',
   },
   {
     id: 7,
@@ -131,68 +133,69 @@ const newsData = [
     image: '/berita16.jpg',
     link: 'https://www.lampungprov.go.id/berita16',
   },
-  // Bisa ditambahkan lebih banyak berita
+
+
 ];
 
 function Berita() {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 relative">
-      <Sidebar />
+    <PageWithSidebar>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="space-y-10"
+      >
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500"
+        >
+          Daftar Berita
+        </motion.h1>
 
-      <div className="flex flex-col md:flex-row gap-8 px-6 md:px-20 py-12">
-        {/* Konten utama berita */}
-        <div className="w-full md:w-3/4 h-auto overflow-y-auto pr-4 space-y-8">
-          <h1 className="text-5xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">
-            Daftar Berita
-          </h1>
-
-          {newsData.map((news) => (
-            <div
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+          {newsData.map((news, index) => (
+            <motion.div
               key={news.id}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl p-6 transform transition-all duration-500 hover:scale-105"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-lg transform transition duration-300 hover:scale-[1.02] overflow-hidden"
             >
-              <div className="flex items-center gap-6">
-                {/* Gambar Berita */}
+              <div className="flex items-start gap-4 p-5">
                 <img
                   src={news.image}
                   alt={news.title}
-                  className="w-32 h-32 object-cover rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-110"
+                  className="w-24 h-24 rounded-lg object-cover flex-shrink-0"
                 />
-
-                {/* Deskripsi Berita */}
-                <div className="flex flex-col">
+                <div>
                   <a
                     href={news.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-2xl font-semibold text-gray-900 dark:text-white hover:text-yellow-500 transition duration-300"
+                    className="text-lg font-semibold text-gray-900 dark:text-white hover:text-yellow-500"
                   >
                     {news.title}
                   </a>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-3">{news.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">{news.description}</p>
                   <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">Tanggal: {news.date}</p>
-
-                  {/* Tombol "Lihat Selengkapnya" */}
                   <a
                     href={news.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 text-yellow-500 hover:text-yellow-600 font-semibold transition duration-300"
+                    className="text-sm text-yellow-500 hover:text-yellow-600 font-semibold mt-3 inline-block"
                   >
-                    Lihat Selengkapnya &rarr;
+                    Lihat Selengkapnya →
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
-        {/* Sidebar Kanan */}
-        <div className="w-full md:w-1/4 sticky top-28 h-fit">
-          <SidebarKanan />
-        </div>
-      </div>
-    </div>
+      </motion.div>
+    </PageWithSidebar>
   );
 }
 

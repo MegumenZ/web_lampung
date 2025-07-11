@@ -1,16 +1,48 @@
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
-  border-right: 2px solid rgba(255, 255, 255, 0.7);
+.hero-section-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%; /* Pastikan gambar mengisi seluruh layar */
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+@media (max-width: 640px) {
+  .hero-section-bg {
+    width: 100%;
+    height: 100vh; /* Pastikan mengisi seluruh layar pada mobile */
+  }
 }
 
-@keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: rgba(255, 255, 255, 0.7); }
+.hero-section-content {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+}
+
+@media (max-width: 640px) {
+  .hero-section-content {
+    padding: 20px 10px; /* Tambahkan padding untuk mobile */
+  }
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem; /* Ukuran teks lebih besar di tablet dan desktop */
+  }
 }

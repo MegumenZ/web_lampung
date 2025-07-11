@@ -1,51 +1,55 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { LanguageContext } from '../contexts/LanguageContext';
+import Translations from '../data/Translation';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const newsData = [
-  {
-    id: 1,
-    title: 'Lampung Targetkan Kenaikan Nilai IDI',
-    date: '31/05/2024',
-    image: '/berita1.jpg',
-    external: false,
-  },
-  {
-    id: 2,
-    title: 'Pelantikan Bupati Way Kanan',
-    date: '01/06/2024',
-    image: '/berita2.jpeg',
-    external: false,
-  },
-  {
-    id: 3,
-    title: 'Detik: Infrastruktur Lampung Dipercepat',
-    date: '02/06/2024',
-    image: '/berita3.jpg',
-    external: true,
-    link: 'https://news.detik.com/berita/d-1234567/judul-berita',
-  },
-  {
-    id: 4,
-    title: 'Kompas: Pemprov Lampung Luncurkan Aplikasi Publik',
-    date: '03/06/2024',
-    image: '/berita4.jpg',
-    external: true,
-    link: 'https://www.kompas.com/regional/read/2024/06/03/123456/pemprov-lampung-aplikasi',
-  },
-];
-
 function HotNewsSlider() {
   const swiperRef = useRef(null);
+  const { language } = useContext(LanguageContext);
+  const t = Translations[language];
+
+  const newsData = [
+    {
+      id: 1,
+      title: t.berita1 || 'Lampung Targetkan Kenaikan Nilai IDI',
+      date: '31/05/2024',
+      image: '/berita1.jpg',
+      external: false,
+    },
+    {
+      id: 2,
+      title: t.berita2 || 'Pelantikan Bupati Way Kanan',
+      date: '01/06/2024',
+      image: '/berita2.jpeg',
+      external: false,
+    },
+    {
+      id: 3,
+      title: t.berita3 || 'Detik: Infrastruktur Lampung Dipercepat',
+      date: '02/06/2024',
+      image: '/berita3.jpg',
+      external: false,
+    },
+    {
+      id: 4,
+      title: t.berita4 || 'Kompas: Pemprov Lampung Luncurkan Aplikasi Publik',
+      date: '03/06/2024',
+      image: '/berita4.jpg',
+      external: true,
+      link: 'https://www.kompas.com/regional/read/2024/06/03/123456/pemprov-lampung-aplikasi',
+    },
+  ];
 
   return (
     <section className="bg-white dark:bg-gray-900 py-16 px-4 sm:px-6 lg:px-20 font-sans relative">
       <h2 className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white tracking-tight">
-        BERITA TERKINI
+        {t.beritaPopuler || 'BERITA TERKINI'}
       </h2>
 
       <Swiper
@@ -108,20 +112,19 @@ function HotNewsSlider() {
         ))}
       </Swiper>
 
-      {/* ⬅️ Panah Navigasi Custom */}
-     <button
-  onClick={() => swiperRef.current.slidePrev()}
-  className="absolute top-1/2 left-2 md:left-4 z-20 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow-md hover:scale-110 hover:text-yellow-500 text-gray-700 dark:text-white transition"
->
-  <FaChevronLeft />
-</button>
-<button
-  onClick={() => swiperRef.current.slideNext()}
-  className="absolute top-1/2 right-2 md:right-4 z-20 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow-md hover:scale-110 hover:text-yellow-500 text-gray-700 dark:text-white transition"
->
-  <FaChevronRight />
-</button>
-
+      {/* Navigasi Panah */}
+      <button
+        onClick={() => swiperRef.current.slidePrev()}
+        className="absolute top-1/2 left-2 md:left-4 z-20 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow-md hover:scale-110 hover:text-yellow-500 text-gray-700 dark:text-white transition"
+      >
+        <FaChevronLeft />
+      </button>
+      <button
+        onClick={() => swiperRef.current.slideNext()}
+        className="absolute top-1/2 right-2 md:right-4 z-20 -translate-y-1/2 bg-white dark:bg-gray-700 p-3 rounded-full shadow-md hover:scale-110 hover:text-yellow-500 text-gray-700 dark:text-white transition"
+      >
+        <FaChevronRight />
+      </button>
     </section>
   );
 }

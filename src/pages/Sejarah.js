@@ -1,63 +1,67 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
-import SidebarKanan from '../components/SidebarKanan';
+import PageWithSidebar from '../components/PageWithSidebar';
+import { motion } from 'framer-motion';
 
 const Sejarah = () => {
   return (
-    <div className="flex min-h-screen bg-[#0f172a] text-white animate-fade-in">
-      {/* Sidebar Kiri */}
-      <Sidebar />
+    <PageWithSidebar>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="max-w-6xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg space-y-6"
+      >
+        {/* Judul dengan animasi */}
+        <motion.h1
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500 text-center mb-10"
+        >
+          Sejarah Provinsi Lampung
+        </motion.h1>
 
-      {/* Konten Tengah */}
-      <main className="flex-1 px-6 py-10 overflow-y-auto ml-16">
-        <div className="max-w-5xl mx-auto bg-[#1e293b] p-8 rounded-lg shadow-lg space-y-6">
-          <h1 className="text-3xl font-bold text-yellow-300 text-center mb-6">Sejarah Lampung</h1>
-
-          <p className="text-gray-200 leading-relaxed">
-            Provinsi Lampung lahir pada tanggal 18 Maret 1964 dengan ditetapkannya Peraturan Pemerintah Nomor 31964 yang kemudian menjadi Undang-undang Nomor 14 tahun 1964. Sebelum itu Provinsi Lampung merupakan Karesidenan yang tergabung dengan Provinsi Sumatera Selatan.
+        {/* Konten Sejarah */}
+        <div className="space-y-4">
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Provinsi Lampung lahir pada tanggal 18 Maret 1964 dengan ditetapkannya Peraturan Pemerintah Nomor 3 Tahun 1964 yang kemudian menjadi Undang-Undang Nomor 14 Tahun 1964. Sebelum itu, Provinsi Lampung merupakan karesidenan yang tergabung dengan Provinsi Sumatera Selatan.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Kendatipun Provinsi Lampung sebelum tanggal 18 maret 1964 tersebut secara administratif masih merupakan bagian dari Provinsi Sumatera Selatan, namun daerah ini jauh sebelum Indonesia merdeka memang telah menunjukkan potensi yang sangat besar serta corak warna kebudayaan tersendiri yang dapat menambah khasanah adat budaya di Nusantara yang tercinta ini. Oleh karena itu pada zaman VOC daerah Lampung tidak terlepas dari incaran penjajahan Belanda.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Kendati sebelum tanggal tersebut Lampung secara administratif masih merupakan bagian dari Sumatera Selatan, namun sejak lama daerah ini telah menunjukkan potensi besar dan memiliki corak kebudayaan yang khas, yang menambah kekayaan budaya Nusantara. Pada zaman VOC, Lampung pun menjadi incaran penjajahan Belanda.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Tatkala Banten dibawah pimpinan Sultan Agung Tirtayasa (1651-1683) ... Sultan Haji akan menyerahkan penguasaan atas daerah Lampung kepada VOC. Akhirnya pada tanggal 7 April 1682 Sultan Agung Tirtayasa disingkirkan dan Sultan Haji dinobatkan menjadi Sultan Banten.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Saat Banten dipimpin Sultan Agung Tirtayasa (1651–1683), wilayah Banten menjadi pusat perdagangan yang menyaingi VOC. Namun putranya, Sultan Haji, bersekutu dengan VOC untuk menggantikan ayahnya. Sebagai imbalan, Sultan Haji menyerahkan penguasaan atas daerah Lampung kepada VOC. Pada 7 April 1682, Sultan Agung Tirtayasa disingkirkan, dan Sultan Haji diangkat menjadi Sultan Banten.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Dari perundingan-perundingan antara VOC dengan Sultan Haji ... karena ternyata tidak semua penguasa di Lampung langsung tunduk begitu saja kepada kekuasaan Sultan Haji.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Piagam tertanggal 27 Agustus 1682 dari Sultan Haji menyerahkan pengawasan perdagangan rempah di Lampung kepada VOC. Namun ekspedisi VOC yang dipimpin Vander Schuur ke Lampung gagal karena sebagian besar penguasa Lampung masih loyal pada Sultan Agung Tirtayasa dan menolak kekuasaan Sultan Haji serta VOC.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Penempatan wakil-wakil Sultan Banten di Lampung yang disebut "Jenang" ... Jadi penguasaan Sultan Banten atas Lampung adalah dalam hal garis pantai saja.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            VOC kemudian menyadari bahwa kekuasaan Sultan Banten atas Lampung tidak mutlak. Wakil Sultan di Lampung yang disebut "Jenang" atau "Gubernur" hanya mengurusi perdagangan lada. Para adipati lokal tetap berkuasa atas wilayahnya dan tidak tunduk pada Jenang. Hubungan Banten dan Lampung bersifat saling membutuhkan, terutama terkait perdagangan hasil bumi.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Selanjutnya pada masa Raffles berkuasa pada tahun 1811 ... baru kemudian tahun 1829 ditunjuk Residen Belanda untuk Lampung.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Pada masa Raffles berkuasa (1811), Lampung diduduki dan tidak dikembalikan ke Belanda karena dianggap bukan jajahan Belanda. Setelah Raffles pergi, pada 1829 barulah Residen Belanda ditunjuk untuk Lampung.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Dalam pada itu sejak tahun 1817 posisi Radin Inten semakin kuat ... Radin Inten tidak diperkenankan meluaskan lagi wilayah selain dari desa-desa yang sampai saat itu berada dibawah pengaruhnya.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Pada 1817, kekuasaan Radin Inten menguat sehingga Belanda khawatir dan mengirim ekspedisi yang menghasilkan persetujuan: Radin Inten mendapat tunjangan f.1.200/tahun, saudara-saudaranya masing-masing f.600/tahun, dan Radin Inten tidak boleh memperluas wilayah. Namun, Radin Inten tetap melakukan perlawanan.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Tetapi persetujuan itu tidak pernah dipatuhi oleh Radin Inten ... sampai akhirnya Radin Inten II ini ditangkap dan dibunuh oleh tentara-tentara Belanda.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Pada 1825, Belanda memerintahkan penangkapan Radin Inten, namun gagal karena benteng Belanda diserbu dan Lilevier dibunuh. Karena saat itu Belanda sibuk dengan Perang Diponegoro (1825–1830), mereka tidak bisa membalas. Radin Inten wafat pada 1825, dan digantikan anaknya, Radin Imba Kusuma.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Sejak itu Belanda mulai leluasa menancapkan kakinya di daerah Lampung ... dibangun jalan kereta api dari Telukbetung menuju Palembang.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Setelah Perang Diponegoro usai, Belanda menyerbu Lampung. Pada 1833, mereka gagal merebut benteng Radin Imba Kusuma. Baru pada 1834, dengan perwira militer baru, benteng berhasil direbut. Radin Imba Kusuma ditangkap di Lingga dan dibuang ke Pulau Timor.
           </p>
-
-          <p className="text-gray-200 leading-relaxed">
-            Hingga menjelang Indonesia merdeka tanggal 17 Agustus 1945 ... pada tahun 1964 Keresidenan Lampung ditingkatkan menjadi Daerah Tingkat I Provinsi Lampung.
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Perlawanan terus berlanjut, bahkan saat Belanda membentuk tentara sewaan Lampung. Radin Inten II, putra Radin Imba Kusuma, memimpin perlawanan hingga akhirnya ia ditangkap dan dibunuh oleh tentara Belanda yang didatangkan dari Batavia.
+          </p>
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Sejak saat itu Belanda mulai leluasa menancapkan kekuasaan. Perkebunan kopi, karet, tembakau, kelapa sawit, dan kaitsyuk mulai dikembangkan. Tahun 1913, jalur kereta api dibangun dari Telukbetung ke Palembang untuk mengangkut hasil perkebunan.
+          </p>
+          <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+            Menjelang kemerdekaan Indonesia pada 17 Agustus 1945 dan masa perjuangan fisik setelahnya, rakyat Lampung juga ikut berjuang. Hingga akhirnya, pada tahun 1964, keresidenan Lampung resmi menjadi Daerah Tingkat I Provinsi Lampung.
           </p>
         </div>
-      </main>
-
-      {/* Sidebar Kanan */}
-      <SidebarKanan />
-    </div>
+      </motion.div>
+    </PageWithSidebar>
   );
 };
 

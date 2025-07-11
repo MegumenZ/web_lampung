@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="%PUBLIC_URL%/logo.png" />
@@ -7,10 +7,21 @@
     <title>Lampung Hot News</title>
 
     <!-- Google Font: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Link to Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Optional: Dark Mode Styles -->
+    <style>
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #1a202c; /* Dark background for dark mode */
+        }
+      }
+    </style>
   </head>
   <body class="font-sans bg-white dark:bg-gray-900 transition-colors duration-300">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
