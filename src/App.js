@@ -10,7 +10,6 @@ import ShareButton from './components/ShareButton';
 import AccessibilityMenu from './components/AccessibilityMenu';
 import { FontSizeProvider } from './contexts/FontSizeContext';
 
-
 import {
   FaFacebook,
   FaTwitter,
@@ -24,6 +23,7 @@ import {
 
 import Home from './pages/Home';
 import Berita from './pages/Berita';
+import BeritaDetail from './pages/BeritaDetail';
 import PelayananPublik from './pages/PelayananPublik';
 import ProfilPimpinan from './pages/ProfilPimpinan';
 import ProfilKepalaOpd from './pages/ProfilKepalaOpd';
@@ -56,6 +56,7 @@ import HargaPasarList from './pages/HargaPasarList';
 import PasarInfo from './pages/PasarInfo';
 import HargaKomoditas from './pages/HargaKomoditas';
 import SearchResult from './components/SearchResult';
+import Pengumuman from './pages/Pengumuman';  // Pengumuman Import
 
 function App() {
   const currentUrl = window.location.href;
@@ -104,6 +105,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/berita" element={<Berita />} />
+                <Route path="/berita/:id" element={<BeritaDetail />} />
                 <Route path="/pelayanan-publik" element={<PelayananPublik />} />
                 <Route path="/profil-pimpinan" element={<ProfilPimpinan />} />
                 <Route path="/profil-kepala-opd" element={<ProfilKepalaOpd />} />
@@ -136,6 +138,8 @@ function App() {
                 <Route path="/harga-komoditas" element={<HargaKomoditas />} />
                 <Route path="/search" element={<SearchResult />} />
                 <Route path="/info-perangkat" element={<InfoPerangkatDaerah />} />
+                {/* New Route for Pengumuman */}
+                <Route path="/pengumuman" element={<Pengumuman />} /> {/* New Route */}
               </Routes>
 
               <div className="w-full flex flex-wrap justify-start items-center gap-2 mt-1 px-6 overflow-x-auto">
